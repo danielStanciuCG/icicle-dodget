@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.turbochargedapps.icicles.actors.Icicle;
+import com.turbochargedapps.icicles.actors.Player;
 
 import static com.turbochargedapps.icicles.Constants.*;
 
@@ -15,6 +16,7 @@ public class IciclesScreen implements Screen {
     private ExtendViewport iciclesViewport;
     private ShapeRenderer renderer;
     private Icicle icicle;
+    private Player player;
 
     @Override
     public void show() {
@@ -22,11 +24,13 @@ public class IciclesScreen implements Screen {
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
         icicle = new Icicle(new Vector2(WORLD_SIZE / 2, WORLD_SIZE / 2));
+        player = new Player(iciclesViewport);
     }
 
     @Override
     public void resize(int width, int height) {
         iciclesViewport.update(width, height, true);
+        player.init();
     }
 
     @Override
@@ -38,7 +42,11 @@ public class IciclesScreen implements Screen {
 
         renderer.setProjectionMatrix(iciclesViewport.getCamera().combined);
         renderer.begin(ShapeType.Filled);
+
+        //Draw icicle
         icicle.render(renderer);
+        //Draw player
+        player.render(renderer);
         renderer.end();
     }
 
