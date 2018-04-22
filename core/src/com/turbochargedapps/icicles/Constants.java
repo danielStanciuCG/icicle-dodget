@@ -21,6 +21,8 @@ public class Constants {
     public static final float PLAYER_HEAD_HEIGHT = 4.0f * PLAYER_HEAD_RADIUS;
     public static final int PLAYER_HEAD_SEGMENTS = 20;
     public static final float PLAYER_LIMB_WIDTH = 0.1f;
+    public static final float PLAYER_BODY_LENGTH = PLAYER_HEAD_RADIUS * 2;
+    public static final float PLAYER_LIMB_LENGTH = PLAYER_BODY_LENGTH / 2;
     public static final Color PLAYER_COLOR = Color.BLACK;
 
 }

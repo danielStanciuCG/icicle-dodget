@@ -33,6 +33,7 @@ public class Icicle {
                 position.x - ICICLE_WIDTH / 2,position.y + ICICLE_HEIGHT,
                 position.x + ICICLE_WIDTH / 2, position.y + ICICLE_HEIGHT
                 );
+        renderer.end();
     }
 
 }
