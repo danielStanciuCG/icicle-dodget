@@ -16,7 +16,7 @@ public class Constants {
     public static final float ICICLE_WIDTH = 0.5f;
     public static final Color ICICLE_COLOR = Color.WHITE;
 
-    //Player
+    //Player features
     public static final float PLAYER_HEAD_RADIUS = 0.5f;
     public static final float PLAYER_HEAD_HEIGHT = 4.0f * PLAYER_HEAD_RADIUS;
     public static final int PLAYER_HEAD_SEGMENTS = 20;
@@ -24,5 +24,6 @@ public class Constants {
     public static final float PLAYER_BODY_LENGTH = PLAYER_HEAD_RADIUS * 2;
     public static final float PLAYER_LIMB_LENGTH = PLAYER_BODY_LENGTH / 2;
     public static final Color PLAYER_COLOR = Color.BLACK;
+    public static final float PLAYER_MOVEMENT_SPEED = 10.0f;
 
 }
