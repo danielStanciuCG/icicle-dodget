@@ -1,5 +1,7 @@
 package com.turbochargedapps.icicles.actors;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
@@ -75,5 +77,33 @@ public class Player {
         renderer.end();
     }
 
+    /**
+     * Updates the position and state of the player
+     * @param delta Time since last frame
+     */
+    public void update(float delta) {
+        //Move to the right
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            position.x -= delta * PLAYER_MOVEMENT_SPEED;
+        }
 
+        //Move to the right
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+            position.x += delta * PLAYER_MOVEMENT_SPEED;
+        }
+
+        stayInBounds();
+    }
+
+    /**
+     * Ensure the player stays within the viewport
+     */
+    private void stayInBounds() {
+        if (position.x < PLAYER_HEAD_RADIUS) {
+            position.x = PLAYER_HEAD_RADIUS;
+        }
+        if (position.x > viewport.getWorldWidth() - PLAYER_HEAD_RADIUS) {
+            position.x = viewport.getWorldWidth() - PLAYER_HEAD_RADIUS;
+        }
+    }
 }

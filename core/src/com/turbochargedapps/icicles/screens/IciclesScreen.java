@@ -35,6 +35,7 @@ public class IciclesScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        player.update(delta);
         iciclesViewport.apply(true);
 
         Gdx.gl.glClearColor(BG_COLOUR.r, BG_COLOUR.g, BG_COLOUR.b, 1);
