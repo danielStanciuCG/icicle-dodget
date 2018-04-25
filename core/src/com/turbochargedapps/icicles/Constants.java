@@ -24,6 +24,10 @@ public class Constants {
     public static final float PLAYER_BODY_LENGTH = PLAYER_HEAD_RADIUS * 2;
     public static final float PLAYER_LIMB_LENGTH = PLAYER_BODY_LENGTH / 2;
     public static final Color PLAYER_COLOR = Color.BLACK;
-    public static final float PLAYER_MOVEMENT_SPEED = 10.0f;
+
+    //Player movement
+    public static final float PLAYER_MOVEMENT_SPEED = 0.5f;
+    public static final float ACCELEROMETER_SENSITIVITY = 10.0f;
+    public static final float GRAVITATIONAL_ACCELETATION = 9.8f;
 
 }
