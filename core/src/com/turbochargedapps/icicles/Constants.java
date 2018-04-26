@@ -26,8 +26,8 @@ public class Constants {
     public static final Color PLAYER_COLOR = Color.BLACK;
 
     //Player movement
-    public static final float PLAYER_MOVEMENT_SPEED = 0.5f;
-    public static final float ACCELEROMETER_SENSITIVITY = 10.0f;
-    public static final float GRAVITATIONAL_ACCELETATION = 9.8f;
+    public static final float PLAYER_MOVEMENT_SPEED = 10.0f;
+    public static final float ACCELEROMETER_SENSITIVITY = 0.5f;
+    public static final float GRAVITATIONAL_ACCELERATION = 9.8f;
 
 }

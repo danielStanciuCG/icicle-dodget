@@ -82,15 +82,18 @@ public class Player {
      * @param delta Time since last frame
      */
     public void update(float delta) {
-        //Move to the right
+        //Move to the right (keyboard)
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             position.x -= delta * PLAYER_MOVEMENT_SPEED;
         }
 
-        //Move to the right
+        //Move to the right (keyboard)
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             position.x += delta * PLAYER_MOVEMENT_SPEED;
         }
+
+        float accelerometerInput = Gdx.input.getAccelerometerY() / (GRAVITATIONAL_ACCELERATION * ACCELEROMETER_SENSITIVITY);
+        position.x += delta * accelerometerInput * PLAYER_MOVEMENT_SPEED;
 
         stayInBounds();
     }
