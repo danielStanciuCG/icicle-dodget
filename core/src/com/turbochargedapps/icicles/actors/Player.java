@@ -2,6 +2,7 @@ package com.turbochargedapps.icicles.actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
@@ -41,6 +42,23 @@ public class Player {
 
         //Head
         renderer.circle(position.x, position.y, PLAYER_HEAD_RADIUS, PLAYER_HEAD_SEGMENTS);
+
+        renderer.setColor(Color.WHITE);
+        //Left eye
+        renderer.circle(
+                position.x - PLAYER_HEAD_RADIUS / 3, position.y + PLAYER_HEAD_RADIUS / 4,
+                PLAYER_HEAD_RADIUS / 8, PLAYER_HEAD_SEGMENTS
+        );
+        //Right eye
+        renderer.circle(
+                position.x + PLAYER_HEAD_RADIUS / 3, position.y + PLAYER_HEAD_RADIUS / 4,
+                PLAYER_HEAD_RADIUS / 8, PLAYER_HEAD_SEGMENTS
+        );
+
+        //TODO: mouth and nose
+
+        renderer.setColor(Color.BLACK);
+
         //Body
         renderer.rectLine(
                 position.x, position.y - PLAYER_HEAD_RADIUS,
