@@ -8,11 +8,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import static com.turbochargedapps.icicles.Constants.*;
 
-public class Icicles {
+public class IcicleRain {
     private Array<Icicle> icicleRain;
     private Viewport viewport;
 
-    public Icicles(Viewport viewport) {
+    public IcicleRain(Viewport viewport) {
         this.viewport = viewport;
         init();
     }
