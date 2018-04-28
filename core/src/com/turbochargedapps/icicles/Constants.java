@@ -31,7 +31,7 @@ public class Constants {
     public static final float ACCELEROMETER_SENSITIVITY = 0.5f;
     public static final float GRAVITATIONAL_ACCELERATION = 9.8f;
 
-    //Icicles movement
+    //IcicleRain movement
     public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5.0f);
     public static final int ICICLE_SPAWNS_PER_SECOND = 3;
 

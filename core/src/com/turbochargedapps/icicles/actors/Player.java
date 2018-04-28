@@ -38,7 +38,6 @@ public class Player {
      */
     public void render(ShapeRenderer renderer) {
         renderer.setColor(PLAYER_COLOR);
-        renderer.begin(ShapeType.Filled);
 
         //Head
         renderer.circle(position.x, position.y, PLAYER_HEAD_RADIUS, PLAYER_HEAD_SEGMENTS);
@@ -111,7 +110,6 @@ public class Player {
                 position.x + PLAYER_HEAD_RADIUS,position.y - PLAYER_HEAD_RADIUS * 2,
                 PLAYER_LIMB_WIDTH
         );
-        renderer.end();
     }
 
     /**
