@@ -53,4 +53,11 @@ class Icicle {
         */
     }
 
+    /**
+     * Returns the current position in the game world of the icicle.
+     * @return Vector2
+     */
+    public Vector2 getPosition() {
+        return position;
+    }
 }
