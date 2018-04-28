@@ -11,6 +11,7 @@ import static com.turbochargedapps.icicles.Constants.*;
  */
 public class Icicle {
     private Vector2 position;
+    private Vector2 velocity;
 
     /**
      * Creates an icicle at a specific position.
@@ -18,6 +19,7 @@ public class Icicle {
      */
     public Icicle(Vector2 position) {
         this.position = position;
+        velocity = new Vector2();
     }
 
     /**
@@ -34,6 +36,25 @@ public class Icicle {
                 position.x + ICICLE_WIDTH / 2, position.y + ICICLE_HEIGHT
                 );
         renderer.end();
+    }
+
+    /**
+     * Updates the position and state of the icicle
+     * @param delta Time since last frame
+     */
+    public void update(float delta) {
+        velocity.mulAdd(ICICLES_ACCELERATION, delta);
+        position.mulAdd(velocity, delta);
+
+        /*
+        The two lines of code above is the equivalent of:
+
+        velocity.x += delta * ICICLES_ACCELERATION.x;
+        velocity.y += delta * ICICLES_ACCELERATION.y;
+        position.x += delta * velocity.x;
+        position.y += delta * velocity.y;
+
+        */
     }
 
 }
