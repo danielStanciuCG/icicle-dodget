@@ -43,23 +43,42 @@ public class Player {
         //Head
         renderer.circle(position.x, position.y, PLAYER_HEAD_RADIUS, PLAYER_HEAD_SEGMENTS);
 
-        renderer.setColor(Color.WHITE);
         //Left eye
+        renderer.setColor(Color.WHITE);
         renderer.circle(
                 position.x - PLAYER_HEAD_RADIUS / 3, position.y + PLAYER_HEAD_RADIUS / 4,
                 PLAYER_HEAD_RADIUS / 8, PLAYER_HEAD_SEGMENTS
         );
+
         //Right eye
         renderer.circle(
                 position.x + PLAYER_HEAD_RADIUS / 3, position.y + PLAYER_HEAD_RADIUS / 4,
                 PLAYER_HEAD_RADIUS / 8, PLAYER_HEAD_SEGMENTS
         );
 
-        //TODO: mouth and nose
-
+        //Mouth
+        renderer.arc(
+                position.x, position.y - PLAYER_HEAD_RADIUS / 5,
+                PLAYER_HEAD_RADIUS / 2,
+                180, 180, PLAYER_HEAD_SEGMENTS
+        );
         renderer.setColor(Color.BLACK);
+        renderer.arc(
+                position.x, position.y - PLAYER_HEAD_RADIUS / 5,
+                PLAYER_HEAD_RADIUS / 2.5f,
+                180, 180, PLAYER_HEAD_SEGMENTS
+        );
+
+        //Nose
+        renderer.setColor(Color.WHITE);
+        renderer.rectLine(
+                position.x, position.y,
+                position.x, position.y - PLAYER_HEAD_RADIUS / 3,
+                PLAYER_LIMB_WIDTH / 4
+        );
 
         //Body
+        renderer.setColor(Color.BLACK);
         renderer.rectLine(
                 position.x, position.y - PLAYER_HEAD_RADIUS,
                 position.x, PLAYER_LIMB_LENGTH,
