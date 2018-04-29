@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import static com.turbochargedapps.icicles.Constants.*;
 
 public class IcicleRain {
-    private DelayedRemovalArray<Icicle> icicleRain;
+    private DelayedRemovalArray<Icicle> icicles;
     private Viewport viewport;
 
     public IcicleRain(Viewport viewport) {
@@ -21,7 +21,7 @@ public class IcicleRain {
      * Sets the initial position
      */
     public void init() {
-        icicleRain = new DelayedRemovalArray<Icicle>(false, 100);
+        icicles = new DelayedRemovalArray<Icicle>(false, 100);
     }
 
     /**
@@ -36,26 +36,26 @@ public class IcicleRain {
                     viewport.getWorldWidth() * MathUtils.random(),
                     viewport.getWorldHeight()
             ));
-            icicleRain.add(newIcicle);
+            icicles.add(newIcicle);
         }
 
         //Update each icicle
-        for (Icicle icicle : icicleRain) {
+        for (Icicle icicle : icicles) {
             icicle.update(delta);
         }
 
         //Begin removal session
-        icicleRain.begin();
+        icicles.begin();
 
         //Remove icicles completely off the bottom of the screen
-        for (int i = 0; i < icicleRain.size; i++) {
-            if (icicleRain.get(i).getPosition().y < -ICICLE_HEIGHT) {
-                icicleRain.removeIndex(i);
+        for (int i = 0; i < icicles.size; i++) {
+            if (icicles.get(i).getPosition().y < -ICICLE_HEIGHT) {
+                icicles.removeIndex(i);
             }
         }
 
         //End removal session
-        icicleRain.end();
+        icicles.end();
     }
 
     /**
@@ -66,8 +66,16 @@ public class IcicleRain {
     public void render(ShapeRenderer renderer) {
         renderer.setColor(ICICLE_COLOR);
 
-        for (Icicle icicle : icicleRain) {
+        for (Icicle icicle : icicles) {
             icicle.render(renderer);
         }
+    }
+
+    /**
+     * Returns the array of icicles.
+     * @return DelayedRemovalArray
+     */
+    public DelayedRemovalArray<Icicle> getIcicles() {
+        return icicles;
     }
 }

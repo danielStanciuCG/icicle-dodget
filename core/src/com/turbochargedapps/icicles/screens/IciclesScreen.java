@@ -37,8 +37,12 @@ public class IciclesScreen implements Screen {
     public void render(float delta) {
         icicleRain.update(delta);
         player.update(delta);
-        gameViewport.apply(true);
+        if (player.hitByIcicle(icicleRain)) {
+            icicleRain.init();
+        }
 
+
+        gameViewport.apply(true);
         Gdx.gl.glClearColor(BG_COLOUR.r, BG_COLOUR.g, BG_COLOUR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 

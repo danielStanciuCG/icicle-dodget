@@ -93,27 +93,28 @@ public class Player {
         //Right leg
         renderer.rectLine(
                 position.x, PLAYER_LIMB_LENGTH,
-                position.x + PLAYER_HEAD_RADIUS,0,
+                position.x + PLAYER_HEAD_RADIUS, 0,
                 PLAYER_LIMB_WIDTH
         );
 
         //Left arm
         renderer.rectLine(
                 position.x, position.y - PLAYER_HEAD_RADIUS,
-                position.x - PLAYER_HEAD_RADIUS,position.y - PLAYER_HEAD_RADIUS * 2,
+                position.x - PLAYER_HEAD_RADIUS, position.y - PLAYER_HEAD_RADIUS * 2,
                 PLAYER_LIMB_WIDTH
         );
 
         //Right arm
         renderer.rectLine(
                 position.x, position.y - PLAYER_HEAD_RADIUS,
-                position.x + PLAYER_HEAD_RADIUS,position.y - PLAYER_HEAD_RADIUS * 2,
+                position.x + PLAYER_HEAD_RADIUS, position.y - PLAYER_HEAD_RADIUS * 2,
                 PLAYER_LIMB_WIDTH
         );
     }
 
     /**
      * Updates the position and state of the player
+     *
      * @param delta Time since last frame
      */
     public void update(float delta) {
@@ -143,5 +144,27 @@ public class Player {
         if (position.x > viewport.getWorldWidth() - PLAYER_HEAD_RADIUS) {
             position.x = viewport.getWorldWidth() - PLAYER_HEAD_RADIUS;
         }
+    }
+
+    /**
+     * Checks if an icicle is within the player's head
+     *
+     * @param icicleRain IcicleRain, which is an array of Icicle objects
+     * @return boolean
+     */
+    public boolean hitByIcicle(IcicleRain icicleRain) {
+        boolean isHit = false;
+
+
+        for (Icicle icicle : icicleRain.getIcicles()) {
+            float icicleX = icicle.getPosition().x;
+            float icicleY = icicle.getPosition().y;
+
+            if ((icicleX >= position.x - PLAYER_HEAD_RADIUS) && (icicleX <= position.x + PLAYER_HEAD_RADIUS) && (icicleY <= position.y + PLAYER_HEAD_RADIUS)) {
+                isHit = true;
+            }
+        }
+
+        return isHit;
     }
 }
