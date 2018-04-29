@@ -8,8 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.turbochargedapps.icicles.Difficulty;
@@ -29,6 +29,8 @@ public class IciclesScreen implements Screen {
     private BitmapFont font;
     private int highScore;
     private Difficulty difficulty;
+
+    private long initialTime;
 
     public IciclesScreen(Difficulty difficulty) {
         this.difficulty = difficulty;
@@ -117,6 +119,14 @@ public class IciclesScreen implements Screen {
                 batch, "HI SCORE: " + highScore,
                 hudViewport.getWorldWidth() - HUD_MARGIN, hudViewport.getWorldHeight() - HUD_MARGIN * 2,
                 0, Align.right, false
+        );
+
+        //FPS counter
+        float fps = 1 / delta;
+
+        font.draw(
+                batch, "FPS: " + Math.round(fps),
+                HUD_MARGIN, HUD_MARGIN
         );
 
         batch.end();
