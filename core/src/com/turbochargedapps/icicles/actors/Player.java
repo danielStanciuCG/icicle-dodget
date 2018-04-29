@@ -122,7 +122,7 @@ public class Player {
      */
     public void update(float delta) {
         //Go back to main menu
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.F1)) {
             game.showDifficultyScreen();
         }
 

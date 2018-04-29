@@ -87,7 +87,8 @@ public class DifficultyScreen extends InputAdapter implements Screen {
                 batch,
             "Move left: LEFT ARROW (desktop) / TILT PHONE LEFT (mobile)\n" +
                 "Move right: RIGHT ARROW (desktop) / TILT PHONE RIGHT (mobile)\n" +
-                "Quit / Return to menu: ESC (desktop) / BACK (mobile)\n" +
+                "Return to menu while playing: F1\n" +
+                "Quit: ESC (desktop) / BACK (mobile)\n" +
                 "Choose difficulty below to start the game. Have fun!",
                 COLD_DIFFICULTY_POSITION.x, COLD_DIFFICULTY_POSITION.y * 1.8f,
                 0, Align.left, false
