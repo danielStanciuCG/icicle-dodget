@@ -35,4 +35,7 @@ public class Constants {
     public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5.0f);
     public static final int ICICLE_SPAWNS_PER_SECOND = 3;
 
+    //HUD
+    public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480.0f;
+    public static final float HUD_MARGIN = 20.0f;
 }

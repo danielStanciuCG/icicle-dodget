@@ -11,6 +11,7 @@ import static com.turbochargedapps.icicles.Constants.*;
 public class IcicleRain {
     private DelayedRemovalArray<Icicle> icicles;
     private Viewport viewport;
+    private int iciclesDodged;
 
     public IcicleRain(Viewport viewport) {
         this.viewport = viewport;
@@ -22,6 +23,7 @@ public class IcicleRain {
      */
     public void init() {
         icicles = new DelayedRemovalArray<Icicle>(false, 100);
+        iciclesDodged = 0;
     }
 
     /**
@@ -51,6 +53,7 @@ public class IcicleRain {
         for (int i = 0; i < icicles.size; i++) {
             if (icicles.get(i).getPosition().y < -ICICLE_HEIGHT) {
                 icicles.removeIndex(i);
+                iciclesDodged++;
             }
         }
 
