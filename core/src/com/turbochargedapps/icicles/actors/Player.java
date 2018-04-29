@@ -13,6 +13,7 @@ import static com.turbochargedapps.icicles.Constants.*;
 public class Player {
     private Vector2 position;
     private Viewport viewport;
+    private int deaths;
 
     /**
      * The constructor sets the viewport and calls a method that creates the model.
@@ -155,13 +156,20 @@ public class Player {
     public boolean hitByIcicle(IcicleRain icicleRain) {
         boolean isHit = false;
 
-
         for (Icicle icicle : icicleRain.getIcicles()) {
             if (icicle.getPosition().dst(position) < PLAYER_HEAD_RADIUS) {
                 isHit = true;
+                deaths++;
             }
         }
-
         return isHit;
+    }
+
+    /**
+     * Returns the number of times the player has been hit in the head by an icicle.
+     * @return int
+     */
+    public int getDeaths() {
+        return deaths;
     }
 }

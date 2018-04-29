@@ -3,32 +3,54 @@ package com.turbochargedapps.icicles.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.turbochargedapps.icicles.actors.IcicleRain;
 import com.turbochargedapps.icicles.actors.Player;
 
 import static com.turbochargedapps.icicles.Constants.*;
 
 public class IciclesScreen implements Screen {
-    private ExtendViewport gameViewport;
+    private ExtendViewport icicleRainViewport;
     private ShapeRenderer renderer;
     private Player player;
     private IcicleRain icicleRain;
 
+    private ScreenViewport hudViewport;
+    private SpriteBatch batch;
+    private BitmapFont font;
+    private int highScore;
+
     @Override
     public void show() {
-        gameViewport = new ExtendViewport(WORLD_SIZE, WORLD_SIZE);
+        icicleRainViewport = new ExtendViewport(WORLD_SIZE, WORLD_SIZE);
         renderer = new ShapeRenderer();
         renderer.setAutoShapeType(true);
-        player = new Player(gameViewport);
-        icicleRain = new IcicleRain(gameViewport);
+
+        hudViewport = new ScreenViewport();
+        batch = new SpriteBatch();
+        font = new BitmapFont();
+        font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        player = new Player(icicleRainViewport);
+        icicleRain = new IcicleRain(icicleRainViewport);
+
+        highScore = 0;
     }
 
     @Override
     public void resize(int width, int height) {
-        gameViewport.update(width, height, true);
+        icicleRainViewport.update(width, height, true);
+        hudViewport.update(width, height, true);
+        font.getData().setScale(Math.min(width, height) / HUD_FONT_REFERENCE_SCREEN_SIZE);
+
         player.init();
         icicleRain.init();
     }
@@ -41,12 +63,11 @@ public class IciclesScreen implements Screen {
             icicleRain.init();
         }
 
-
-        gameViewport.apply(true);
+        icicleRainViewport.apply(true);
         Gdx.gl.glClearColor(BG_COLOUR.r, BG_COLOUR.g, BG_COLOUR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        renderer.setProjectionMatrix(gameViewport.getCamera().combined);
+        renderer.setProjectionMatrix(icicleRainViewport.getCamera().combined);
         renderer.begin(ShapeType.Filled);
 
         //Draw icicles
@@ -57,6 +78,37 @@ public class IciclesScreen implements Screen {
         player.render(renderer);
 
         renderer.end();
+
+        //HUD
+        highScore = Math.max(highScore, icicleRain.getIciclesDodged());
+        hudViewport.apply(true);
+        batch.setProjectionMatrix(hudViewport.getCamera().combined);
+
+        //Draw hud
+        batch.begin();
+
+        //Deaths
+        font.draw(
+                batch, "DEATHS: " + player.getDeaths(),
+                HUD_MARGIN, hudViewport.getWorldHeight() - HUD_MARGIN
+        );
+
+        //Current score
+        font.draw(
+                batch, "SCORE: " + icicleRain.getIciclesDodged(),
+                hudViewport.getWorldWidth() - HUD_MARGIN, hudViewport.getWorldHeight() - HUD_MARGIN,
+                0, Align.right, false
+        );
+
+        //Hi Score
+        font.draw(
+                batch, "HI SCORE: " + highScore,
+                hudViewport.getWorldWidth() - HUD_MARGIN, hudViewport.getWorldHeight() - HUD_MARGIN * 2,
+                0, Align.right, false
+        );
+
+        batch.end();
+
     }
 
     @Override
@@ -71,11 +123,13 @@ public class IciclesScreen implements Screen {
 
     @Override
     public void hide() {
-        renderer.dispose();
+
     }
 
     @Override
     public void dispose() {
-
+        renderer.dispose();
+        batch.dispose();
+        font.dispose();
     }
 }
