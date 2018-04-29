@@ -9,10 +9,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.turbochargedapps.icicles.Difficulty;
+import com.turbochargedapps.icicles.IciclesGame;
 import com.turbochargedapps.icicles.actors.IcicleRain;
 import com.turbochargedapps.icicles.actors.Player;
 
@@ -29,11 +29,11 @@ public class IciclesScreen implements Screen {
     private BitmapFont font;
     private int highScore;
     private Difficulty difficulty;
+    private IciclesGame game;
 
-    private long initialTime;
-
-    public IciclesScreen(Difficulty difficulty) {
+    public IciclesScreen(IciclesGame game, Difficulty difficulty) {
         this.difficulty = difficulty;
+        this.game = game;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class IciclesScreen implements Screen {
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        player = new Player(icicleRainViewport);
+        player = new Player(icicleRainViewport, game);
         icicleRain = new IcicleRain(icicleRainViewport, difficulty);
 
         highScore = 0;
@@ -80,7 +80,6 @@ public class IciclesScreen implements Screen {
 
         //Draw icicles
         icicleRain.render(renderer);
-
 
         //Draw player
         player.render(renderer);
@@ -130,7 +129,6 @@ public class IciclesScreen implements Screen {
         );
 
         batch.end();
-
     }
 
     @Override

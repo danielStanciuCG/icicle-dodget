@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.turbochargedapps.icicles.IciclesGame;
 
 import static com.turbochargedapps.icicles.Constants.*;
 
@@ -14,14 +14,16 @@ public class Player {
     private Vector2 position;
     private Viewport viewport;
     private int deaths;
+    private IciclesGame game;
 
     /**
      * The constructor sets the viewport and calls a method that creates the model.
      *
      * @param viewport Viewport to be used.
      */
-    public Player(Viewport viewport) {
+    public Player(Viewport viewport, IciclesGame game) {
         this.viewport = viewport;
+        this.game = game;
         init();
     }
 
@@ -119,6 +121,11 @@ public class Player {
      * @param delta Time since last frame
      */
     public void update(float delta) {
+        //Go back to main menu
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            game.showDifficultyScreen();
+        }
+
         //Move to the right (keyboard)
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             position.x -= delta * PLAYER_MOVEMENT_SPEED;

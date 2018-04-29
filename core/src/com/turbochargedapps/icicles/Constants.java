@@ -39,12 +39,31 @@ public class Constants {
     public static final float HUD_MARGIN = 20.0f;
 
     //Difficulty screen
+    public static final float DIFFICULTY_WORLD_SIZE = 480.0f;
+    public static final float DIFFICULTY_BUTTON_RADIUS = DIFFICULTY_WORLD_SIZE / 9;
+    public static final float DIFFICULTY_FONT_SCALE = 1.2f;
+
     public static final String COLD_DIFFICULTY_LABEL = "COLD";
     public static final int COLD_ICICLE_SPAWNS_PER_SECOND = 5;
+    public static final Color COLD_COLOR = new Color(0.2f, 0.2f, 1, 1);
+    public static final Vector2 COLD_DIFFICULTY_POSITION = new Vector2(
+            DIFFICULTY_WORLD_SIZE / 4,
+            DIFFICULTY_WORLD_SIZE / 2
+    );
 
     public static final String COLDER_DIFFICULTY_LABEL = "COLDER";
     public static final int COLDER_ICICLE_SPAWNS_PER_SECOND = 15;
+    public static final Color COLDER_COLOR = new Color(0.5f, 0.5f, 1, 1);
+    public static final Vector2 COLDER_DIFFICULTY_POSITION = new Vector2(
+            DIFFICULTY_WORLD_SIZE / 2,
+            DIFFICULTY_WORLD_SIZE / 2
+    );
 
     public static final String COLDEST_DIFFICULTY_LABEL = "COLDEST";
     public static final int COLDEST_ICICLE_SPAWNS_PER_SECOND = 25;
+    public static final Color COLDEST_COLOR = new Color(0.7f, 0.7f, 1, 1);
+    public static final Vector2 COLDEST_DIFFICULTY_POSITION = new Vector2(
+            DIFFICULTY_WORLD_SIZE / 4 * 3,
+            DIFFICULTY_WORLD_SIZE / 2
+    );
 }
