@@ -157,10 +157,7 @@ public class Player {
 
 
         for (Icicle icicle : icicleRain.getIcicles()) {
-            float icicleX = icicle.getPosition().x;
-            float icicleY = icicle.getPosition().y;
-
-            if ((icicleX >= position.x - PLAYER_HEAD_RADIUS) && (icicleX <= position.x + PLAYER_HEAD_RADIUS) && (icicleY <= position.y + PLAYER_HEAD_RADIUS)) {
+            if (icicle.getPosition().dst(position) < PLAYER_HEAD_RADIUS) {
                 isHit = true;
             }
         }
