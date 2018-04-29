@@ -81,4 +81,12 @@ public class IcicleRain {
     public DelayedRemovalArray<Icicle> getIcicles() {
         return icicles;
     }
+
+    /**
+     * Returns the number of icicles that have gone completely off the bottom of the screen
+     * @return int
+     */
+    public int getIciclesDodged() {
+        return iciclesDodged;
+    }
 }
