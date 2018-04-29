@@ -7,6 +7,6 @@ public class IciclesGame extends Game {
 	
 	@Override
 	public void create () {
-		setScreen(new IciclesScreen());
+		setScreen(new IciclesScreen(Difficulty.COLD));
 	}
 }

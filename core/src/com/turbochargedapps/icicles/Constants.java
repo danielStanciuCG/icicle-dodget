@@ -33,9 +33,18 @@ public class Constants {
 
     //IcicleRain movement
     public static final Vector2 ICICLES_ACCELERATION = new Vector2(0, -5.0f);
-    public static final int ICICLE_SPAWNS_PER_SECOND = 3;
 
     //HUD
     public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480.0f;
     public static final float HUD_MARGIN = 20.0f;
+
+    //Difficulty screen
+    public static final String COLD_DIFFICULTY_LABEL = "COLD";
+    public static final int COLD_ICICLE_SPAWNS_PER_SECOND = 5;
+
+    public static final String COLDER_DIFFICULTY_LABEL = "COLDER";
+    public static final int COLDER_ICICLE_SPAWNS_PER_SECOND = 15;
+
+    public static final String COLDEST_DIFFICULTY_LABEL = "COLDEST";
+    public static final int COLDEST_ICICLE_SPAWNS_PER_SECOND = 25;
 }

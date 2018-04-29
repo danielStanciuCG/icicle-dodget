@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.DelayedRemovalArray;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.turbochargedapps.icicles.Difficulty;
 
 import static com.turbochargedapps.icicles.Constants.*;
 
@@ -12,9 +13,11 @@ public class IcicleRain {
     private DelayedRemovalArray<Icicle> icicles;
     private Viewport viewport;
     private int iciclesDodged;
+    private Difficulty difficulty;
 
-    public IcicleRain(Viewport viewport) {
+    public IcicleRain(Viewport viewport, Difficulty difficulty) {
         this.viewport = viewport;
+        this.difficulty = difficulty;
         init();
     }
 
@@ -33,7 +36,7 @@ public class IcicleRain {
      */
     public void update(float delta) {
         //Add a new icicle at the top of the viewport at a random x position
-        if (MathUtils.random() < delta * ICICLE_SPAWNS_PER_SECOND) {
+        if (MathUtils.random() < delta * difficulty.getIcicleSpawnRate()) {
             Icicle newIcicle = new Icicle(new Vector2(
                     viewport.getWorldWidth() * MathUtils.random(),
                     viewport.getWorldHeight()

@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.turbochargedapps.icicles.Difficulty;
 import com.turbochargedapps.icicles.actors.IcicleRain;
 import com.turbochargedapps.icicles.actors.Player;
 
@@ -27,6 +28,11 @@ public class IciclesScreen implements Screen {
     private SpriteBatch batch;
     private BitmapFont font;
     private int highScore;
+    private Difficulty difficulty;
+
+    public IciclesScreen(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
 
     @Override
     public void show() {
@@ -40,7 +46,7 @@ public class IciclesScreen implements Screen {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         player = new Player(icicleRainViewport);
-        icicleRain = new IcicleRain(icicleRainViewport);
+        icicleRain = new IcicleRain(icicleRainViewport, difficulty);
 
         highScore = 0;
     }
@@ -87,10 +93,16 @@ public class IciclesScreen implements Screen {
         //Draw hud
         batch.begin();
 
+        //Difficulty level
+        font.draw(
+                batch, "DIFFICULTY: " + difficulty.getDifficultyLabel(),
+                HUD_MARGIN, hudViewport.getWorldHeight() - HUD_MARGIN
+        );
+
         //Deaths
         font.draw(
                 batch, "DEATHS: " + player.getDeaths(),
-                HUD_MARGIN, hudViewport.getWorldHeight() - HUD_MARGIN
+                HUD_MARGIN, hudViewport.getWorldHeight() - HUD_MARGIN * 2
         );
 
         //Current score
