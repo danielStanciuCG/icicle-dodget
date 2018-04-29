@@ -78,6 +78,8 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
+        //TODO: Add info text on how to play
+
         //Draw the font for the left-hand button
         final GlyphLayout coldLayout = new GlyphLayout(font, COLD_DIFFICULTY_LABEL);
         font.draw(
@@ -153,4 +155,6 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
         return true;
     }
+
+
 }

@@ -36,7 +36,7 @@ public class Constants {
 
     //HUD
     public static final float HUD_FONT_REFERENCE_SCREEN_SIZE = 480.0f;
-    public static final float HUD_MARGIN = 20.0f;
+    public static final float HUD_MARGIN = 45;
 
     //Difficulty screen
     public static final float DIFFICULTY_WORLD_SIZE = 480.0f;
