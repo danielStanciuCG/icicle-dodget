@@ -1,6 +1,7 @@
 package com.turbochargedapps.icicles.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,6 +13,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
 import static com.turbochargedapps.icicles.Constants.*;
 
 import com.turbochargedapps.icicles.Difficulty;
@@ -44,6 +46,7 @@ public class DifficultyScreen extends InputAdapter implements Screen {
     @Override
     public void render(float delta) {
         viewport.apply();
+        update();
         Gdx.gl.glClearColor(BG_COLOUR.r, BG_COLOUR.g, BG_COLOUR.b, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -78,8 +81,19 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
-        //TODO: Add info text on how to play
+        //Instructions
+        font.getData().setScale(DIFFICULTY_FONT_SCALE / 2);
+        font.draw(
+                batch,
+            "Move left: LEFT ARROW (desktop) / TILT PHONE LEFT (mobile)\n" +
+                "Move right: RIGHT ARROW (desktop) / TILT PHONE RIGHT (mobile)\n" +
+                "Quit / Return to menu: ESC (desktop) / BACK (mobile)\n" +
+                "Choose difficulty below to start the game. Have fun!",
+                COLD_DIFFICULTY_POSITION.x, COLD_DIFFICULTY_POSITION.y * 1.8f,
+                0, Align.left, false
+        );
 
+        font.getData().setScale(DIFFICULTY_FONT_SCALE);
         //Draw the font for the left-hand button
         final GlyphLayout coldLayout = new GlyphLayout(font, COLD_DIFFICULTY_LABEL);
         font.draw(
@@ -156,5 +170,12 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         return true;
     }
 
-
+    /**
+     * Key input.
+     */
+    private void update() {
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            System.exit(0);
+        }
+    }
 }
